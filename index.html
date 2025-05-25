@@ -6,7 +6,7 @@
     <title>2k10 vượt thời gian đập tan thách thức</title>
     <style>
         body {
-            background: url('assets/images/th.jpg') center center/cover no-repeat fixed;
+            background: url('images/th.jpg') center center/cover no-repeat fixed;
             min-height: 100vh;
         }
         /* Để nội dung nổi bật trên nền */
@@ -80,7 +80,7 @@
     </div>
     <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
         <video autoplay muted loop style="max-width: 90vw; width: 300px; border-radius: 16px; box-shadow: 0 4px 24px #888;">
-            <source src="/assets/videos/nhay1.mp4" type="video/mp4">
+            <source src="videos/nhay1.mp4" type="video/mp4" />
         </video>
     </div>
     <div class="text">
@@ -94,7 +94,7 @@
     </div>
     <div id="video-popup" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
         <video id="popup-video" autoplay loop style="width:60vw; max-width:600px; border-radius:18px; box-shadow:0 8px 32px #000a;">
-            <source src="/assets/videos/liem.mp4" type="video/mp4">
+            <source src="videos/liem.mp4" type="video/mp4">
         </video>
         <button onclick="closePopupVideo()" style="position:absolute;top:30px;right:40px;font-size:2rem;background:none;border:none;color:#fff;cursor:pointer;">&times;</button>
     </div>
@@ -109,11 +109,11 @@
 
             // Đổi video nguồn dựa vào số lần nhấn
             if (okClickCount === 1) {
-                video.src = "/assets/videos/liem.mp4";
+                video.src = "videos/liem.mp4";
             } else if (okClickCount === 2) {
-                video.src = "/assets/videos/liem1.mp4";
+                video.src = "videos/liem1.mp4";
             } else if (okClickCount === 3) {
-                video.src = "/assets/videos/meme.mp4";
+                video.src = "videos/meme.mp4";
             }
 
             popup.style.display = 'flex';
@@ -126,7 +126,7 @@
             if (okClickCount >= maxOkClick) {
                 document.getElementById('ok-btn').style.display = 'none';
                 document.getElementById('warning-msg').style.display = 'block';
-                document.getElementById('warning-msg').textContent = "Bạn đã vượt quá số lần cho phép!";
+                document.getElementById('warning-msg').textContent = "Bạn đã hết lượt nhập vui lòng ko hú hú";
             }
         }
         function closePopupVideo() {
