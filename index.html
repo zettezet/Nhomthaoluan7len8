@@ -2,419 +2,400 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>NHÓM THẢO LUẬN 7 Lên 8 ( toán,văn,anh,khtn)</title>
+    <title>Không Gian Tình Yêu 3D Lung Linh</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Three.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+    <!-- Font cho tiêu đề -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat fixed;
-            font-family: 'Quicksand', 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
+            overflow: hidden;
             min-height: 100vh;
+            /* Thay background bằng hình ảnh chill ngầu */
+            background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Quicksand', Arial, sans-serif;
         }
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(120deg, #f6d365cc 0%, #fda085cc 100%);
-            z-index: 0;
+        #love3d {
+            position: absolute;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 1;
         }
-        header {
+        .love-title {
+            position: absolute;
+            top: 6%;
+            width: 100vw;
             text-align: center;
-            padding: 48px 10px 28px 10px;
             color: #fff;
-            text-shadow: 1px 2px 12px #fda085, 0 2px 8px #b6b6e6;
-            background: linear-gradient(90deg, #fda085cc 60%, #f6d365cc 100%);
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            box-shadow: 0 6px 32px #fda08555;
-            position: relative;
-            z-index: 1;
-            animation: fadeInDown 1s;
-        }
-        header h1 {
-            font-family: 'Baloo 2', cursive;
             font-size: 3rem;
-            margin-bottom: 12px;
-            letter-spacing: 2.5px;
-            text-shadow: 2px 4px 16px #fff8, 0 2px 8px #fda08588;
-            animation: popIn 1s;
-        }
-        header p {
-            font-size: 1.3rem;
-            margin-top: 0;
-            font-weight: 600;
-            animation: fadeIn 1.5s;
-        }
-        .container {
-            max-width: 900px;
-            margin: 36px auto 0 auto;
-            background: rgba(255,255,255,0.97);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px #fda08555;
-            padding: 40px 28px 32px 28px;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 1.2s;
-        }
-        h2 {
-            color: #f76d6d;
-            margin-top: 0;
-            font-family: 'Baloo 2', cursive;
-            font-size: 2rem;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: popIn 1.2s;
-        }
-        h2 .emoji {
-            font-size: 2rem;
-        }
-        ul {
-            font-size: 1.15rem;
-            line-height: 2.1;
-            color: #333;
-            padding-left: 24px;
-            margin-bottom: 32px;
-            animation: fadeIn 1.5s;
-        }
-        ul li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 8px;
-        }
-        .fun-section {
-            margin-top: 36px;
-            background: linear-gradient(90deg, #fda085 60%, #f6d365 100%);
-            border-radius: 18px;
-            padding: 28px 28px 24px 28px;
-            color: #fff;
-            box-shadow: 0 4px 18px #fda08533;
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 1.5s;
-        }
-        .fun-section h2 {
-            color: #fff;
-            margin-bottom: 18px;
-            text-shadow: 1px 2px 8px #fda08588;
-        }
-        .quiz-btn {
-            display: inline-block;
-            margin-top: 18px;
-            background: linear-gradient(90deg, #4b6cb7, #ffb347, #ffcc33);
-            color: #fff;
+            font-family: 'Pacifico', cursive, Arial;
+            text-shadow: 0 6px 32px #e57373, 0 2px 8px #fff, 0 0 24px #ffb6c1;
+            z-index: 2;
+            letter-spacing: 3px;
             font-weight: bold;
-            border: none;
-            padding: 12px 36px;
-            border-radius: 30px;
-            box-shadow: 0 4px 16px #4b6cb755;
-            cursor: pointer;
-            font-size: 1.15rem;
-            letter-spacing: 1px;
-            transition: background 0.4s, transform 0.2s, box-shadow 0.3s;
-            outline: none;
-            position: relative;
-            overflow: hidden;
+            animation: fadeInDown 1.2s;
+            user-select: none;
         }
-        .quiz-btn:hover {
-            background: linear-gradient(90deg, #ffb347, #4b6cb7, #ffcc33);
-            transform: scale(1.07);
-            box-shadow: 0 6px 24px #ffb34788;
+        .love-quote {
+            position: absolute;
+            bottom: 7%;
+            width: 100vw;
+            text-align: center;
+            color: #fff;
+            font-size: 1.5rem;
+            font-family: 'Quicksand', Arial;
+            text-shadow: 0 2px 12px #e57373, 0 2px 8px #fff, 0 0 16px #ffb6c1;
+            z-index: 2;
+            animation: fadeInUp 1.5s;
+            user-select: none;
         }
-        #quiz-section {
-            display: none;
-            margin-top: 24px;
-            background: #fffbe7;
-            border-radius: 14px;
-            padding: 24px 18px;
-            box-shadow: 0 2px 8px #fda08533;
-            animation: fadeIn 0.7s;
-        }
-        .question {
-            font-weight: bold;
-            color: #f76d6d;
-            font-size: 1.18rem;
-            margin-bottom: 10px;
-            animation: popIn 0.7s;
-        }
-        .answer {
-            margin-top: 10px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .answer input[type="text"] {
-            padding: 10px;
-            border-radius: 7px;
-            border: 1px solid #ccc;
-            width: 240px;
-            font-size: 1.08rem;
-            margin-right: 10px;
-            transition: box-shadow 0.3s;
-        }
-        .answer input[type="text"]:focus {
-            box-shadow: 0 0 8px #fda08588;
-            outline: none;
-        }
-        .result {
-            margin-top: 18px;
-            font-weight: bold;
-            color: #4b6cb7;
-            font-size: 1.13rem;
-            min-height: 32px;
-            transition: color 0.3s;
-        }
-        /* Hiệu ứng */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px);}
-            to { opacity: 1; transform: translateY(0);}
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 3;
+            animation: sparkle 2s linear infinite;
         }
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-40px);}
             to { opacity: 1; transform: translateY(0);}
         }
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.7);}
-            80% { opacity: 1; transform: scale(1.1);}
-            100% { opacity: 1; transform: scale(1);}
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes sparkle {
+            0% { opacity: 0.7; transform: scale(1) rotate(0deg);}
+            50% { opacity: 1; transform: scale(1.2) rotate(20deg);}
+            100% { opacity: 0.7; transform: scale(1) rotate(0deg);}
+        }
+        /* Hiệu ứng mờ nền */
+        .blur-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            backdrop-filter: blur(2.5px);
+            pointer-events: none;
         }
         /* Responsive */
         @media (max-width: 600px) {
-            .container {padding: 16px 4px;}
-            .fun-section {padding: 14px 6px;}
-            #quiz-section {padding: 12px 4px;}
-            header h1 {font-size: 2rem;}
-        }
-        /* Confetti */
-        .confetti {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            .love-title {font-size: 2rem;}
+            .love-quote {font-size: 1.1rem;}
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🌞 Chào 2K12! Kỳ Nghỉ Hè Vui Vẻ & Bổ Ích 🌈</h1>
-        <p>Vừa thư giãn, vừa ôn luyện để không quên kiến thức!<br>Hè này hãy cùng khám phá, học hỏi và vui chơi nhé!</p>
-    </header>
-    <div class="container">
-        <h2><span class="emoji">✨</span>NHÓM THẢO LUẬN 7 Lên 8 ( toán,văn,anh,khtn)</h2>
-        <ul>
-            <li> <b>LUẬT NHÓM:</b></li>
-            <li>👉không chửi tục </li>
-            <li>👉hoà đồng với mn</li>
-            <li>👉nói chuyện giao lưu</li>
-            <li>- Giúp đỡ nhau trong học tập và giải đáp</li>
-            <li>- Giúp đỡ nhau cùng đạt được điểm cao </li>
-            <li>-Chia sẽ bí quyết</li>
-        </ul>
-        <div class="fun-section">
-            <h2>🎉 Mini Quiz: Kiểm tra kiến thức hè!</h2>
-            <button class="quiz-btn" onclick="showQuiz()">Bắt đầu Quiz</button>
-            <div id="quiz-section">
-                <div class="question" id="quiz-question"></div>
-                <div class="answer">
-                    <input type="text" id="quiz-answer" placeholder="Nhập đáp án của bạn...">
-                    <button class="quiz-btn" style="padding:8px 18px; font-size:1rem;" onclick="checkQuiz()">Trả lời</button>
-                </div>
-                <div class="result" id="quiz-result"></div>
-            </div>
-        </div>
+    <div class="blur-bg"></div>
+    <div class="love-title">💖1/6 vv chúc ae 8386💖</div>
+    <div id="love3d"></div>
+    <div class="love-quote">
+        <span style="font-size:2rem;"></span>
+        By 
+        zettezet
     </div>
-    <canvas class="confetti" id="confetti-canvas" style="display:none"></canvas>
+    <!-- Hiệu ứng lấp lánh -->
+    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png" class="sparkle" style="top:12%;left:18%;width:38px;">
+    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png" class="sparkle" style="top:22%;left:80%;width:28px;animation-delay:0.7s;">
+    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png" class="sparkle" style="top:60%;left:12%;width:22px;animation-delay:1.2s;">
+    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png" class="sparkle" style="top:75%;left:70%;width:32px;animation-delay:0.3s;">
+    <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png" class="sparkle" style="top:40%;left:50%;width:26px;animation-delay:1.5s;">
+    <!-- Sao chổi canvas -->
+    <canvas id="comet-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:4;"></canvas>
+
+    <!-- Nhạc nền buồn -->
+    <!-- Thay file âm thanh thành file mp4 của bạn -->
+    <audio id="bg-music" src="zettezet.mp4" loop autoplay></audio>
+    <button id="music-toggle" style="position:fixed;bottom:18px;right:18px;z-index:10;background:rgba(255,255,255,0.7);border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 8px #bbb;cursor:pointer;">
+        <span id="music-icon" style="font-size:1.6rem;">🔊</span>
+    </button>
     <script>
-        // Danh sách câu hỏi trắc nghiệm với đáp án là hình ảnh
-        const quizData = [
-            {
-                img: "cau1.png",
-                choices: [
-                    "kl1.3.png", // Đáp án A (ảnh)
-                    "kl1.2.png", // Đáp án B (ảnh)
-                    "kl1.1.png", // Đáp án C (ảnh)
-                    "kl1.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 2 // chỉ số trong mảng choices, bắt đầu từ 0
-            },
-            {
-                img: "cau2.png",
-                choices: [
-                    "kl2.3.png", // Đáp án A (ảnh)
-                    "kl2.2.png", // Đáp án B (ảnh)
-                    "kl2.1.png", // Đáp án C (ảnh)
-                    "kl2.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 0
-            },
-            {
-                img: "cau3.png",
-                choices: [
-                    "kl3.3.png", // Đáp án A (ảnh)
-                    "kl3.2.png", // Đáp án B (ảnh)
-                    "kl3.1.png", // Đáp án C (ảnh)
-                    "kl3.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 2
-            },
-            {
-                img: "cau4.png",
-                choices: [
-                    "kl4.3.png", // Đáp án A (ảnh)
-                    "kl4.2.png", // Đáp án B (ảnh)
-                    "kl4.1.png", // Đáp án C (ảnh)
-                    "kl4.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 1
-            },
-            {
-                img: "cau5.png",
-                choices: [
-                    "kl5.3.png", // Đáp án A (ảnh)
-                    "kl5.2.png", // Đáp án B (ảnh)
-                    "kl5.1.png", // Đáp án C (ảnh)
-                    "kl5.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 2
-            },
-            // Thêm các câu hỏi khác ở đây
-            {
-                img: "cau6.png",
-                choices: [
-                    "kl6.3.png", // Đáp án A (ảnh)
-                    "kl6.2.png", // Đáp án B (ảnh)
-                    "kl6.1.png", // Đáp án C (ảnh)
-                    "kl6.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 1
-            },
-            {
-                img: "cau7.png",
-                choices: [
-                    "kl7.1.png", // Đáp án A (ảnh)
-                    "kl7.2.png", // Đáp án B (ảnh)
-                    "kl7.3.png", // Đáp án C (ảnh)
-                    "kl7.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 1
-            },
-            {
-                img: "cau8.png",
-                choices: [
-                    "kl8.1.png", // Đáp án A (ảnh)
-                    "kl8.2.png", // Đáp án B (ảnh)
-                    "kl8.3.png", // Đáp án C (ảnh)
-                    "kl8.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 1
-            },
-            {
-                img: "cau9.png",
-                choices: [
-                    "kl9.1.png", // Đáp án A (ảnh)
-                    "kl9.2.png", // Đáp án B (ảnh)
-                    "kl9.3.png", // Đáp án C (ảnh)
-                    "kl9.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 0
-            },
-            {
-                img: "cau10.png",
-                choices: [
-                    "kl10.1.png", // Đáp án A (ảnh)
-                    "kl10.2.png", // Đáp án B (ảnh)
-                    "kl10.3.png", // Đáp án C (ảnh)
-                    "kl10.4.png"  // Đáp án D (ảnh)
-                ],
-                answer: 0
-            },
-        ];
-        let quizIndex = 0;
+    document.addEventListener('DOMContentLoaded', function() {
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        music.volume = 1.0; // Đặt âm lượng tối đa
 
-        function showQuiz() {
-            document.getElementById('quiz-section').style.display = 'block';
-            quizIndex = Math.floor(Math.random() * quizData.length);
-            const q = quizData[quizIndex];
-            // Hiển thị ảnh câu hỏi
-            if (q.img) {
-                document.getElementById('quiz-question').innerHTML = `<img src="${q.img}" alt="Câu hỏi" style="max-width:320px;max-height:200px;border-radius:12px;box-shadow:0 2px 12px #aaa;">`;
-            } else {
-                document.getElementById('quiz-question').textContent = q.question || "";
+        // Thử phát nhạc ngay khi DOMContentLoaded
+        music.play().then(() => {
+            musicIcon.textContent = "🔊";
+        }).catch(() => {
+            function tryPlayMusic() {
+                music.play().catch(()=>{});
+                document.removeEventListener('click', tryPlayMusic);
+                document.removeEventListener('touchstart', tryPlayMusic);
             }
-            // Hiển thị các đáp án là hình ảnh, xếp thành cột
-            let html = '<div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;">';
-            q.choices.forEach((imgSrc, idx) => {
-                html += `<button class="quiz-btn" style="margin:0;padding:0;background:none;box-shadow:none;min-width:unset;min-height:unset;border-radius:14px;display:flex;align-items:center;" onclick="checkQuiz(${idx})">
-                            <img src="${imgSrc}" alt="Đáp án ${idx+1}" style="max-width:100%;height:auto;display:block;border-radius:12px;border:3px solid #eee;box-shadow:0 2px 8px #bbb;">
-                        </button>`;
+            document.addEventListener('click', tryPlayMusic);
+            document.addEventListener('touchstart', tryPlayMusic);
+        });
+
+        musicBtn.onclick = function() {
+            if (music.paused) {
+                music.play();
+                musicIcon.textContent = "🔊";
+            } else {
+                music.pause();
+                musicIcon.textContent = "🔇";
+            }
+        };
+    });
+    </script>
+
+    <!-- Lời thoại tình yêu buồn -->
+    <div id="sad-quotes" style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);width:90vw;max-width:500px;text-align:center;color:#fff;font-size:1.2rem;font-family:'Quicksand',Arial,sans-serif;text-shadow:0 2px 8px #000,0 2px 8px #e57373;z-index:10;pointer-events:none;">
+    </div>
+
+    <script>
+    let quoteIdx = 0;
+    const quoteDiv1 = document.getElementById('sad-quotes');
+    function showQuote() {
+        quoteDiv1.textContent = sadQuotes[quoteIdx];
+        quoteIdx = (quoteIdx + 1) % sadQuotes.length;
+    }
+    showQuote();
+    setInterval(showQuote, 6000);
+
+    // Nhạc nền: play/pause
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-toggle');
+    const musicIcon = document.getElementById('music-icon');
+    music.volume = 0.6;
+    musicBtn.onclick = function() {
+        if (music.paused) {
+            music.play();
+            musicIcon.textContent = "🔊";
+        } else {
+            music.pause();
+            musicIcon.textContent = "🔇";
+        }
+    };
+    </script>
+    <script>
+        // Three.js 3D Heart Scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 8);
+
+        const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+        renderer.setClearColor(0x000000, 0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('love3d').appendChild(renderer.domElement);
+
+        // Ánh sáng lung linh
+        const light1 = new THREE.PointLight(0xffffff, 1.2, 100);
+        light1.position.set(5, 10, 10);
+        scene.add(light1);
+        scene.add(new THREE.AmbientLight(0xffb6c1, 0.8));
+        // Thêm ánh sáng màu hồng tím lung linh
+        const light2 = new THREE.PointLight(0xff69b4, 0.7, 100);
+        light2.position.set(-6, -8, 8);
+        scene.add(light2);
+
+        // Tạo các điểm theo phương trình trái tim
+        function createHeartPoints(numPoints = 420, scale = 1.7) {
+            const points = [];
+            for (let i = 0; i < numPoints; i++) {
+                const t = Math.PI * 2 * (i / numPoints);
+                const x = scale * 16 * Math.pow(Math.sin(t), 3) / 16;
+                const y = scale * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) / 16;
+                const z = (Math.random()-0.5) * 0.7; // Thêm độ sâu nhẹ cho 3D lung linh
+                points.push(new THREE.Vector3(x, y, z));
+            }
+            return points;
+        }
+
+        // Tạo trái tim bằng các phân tử nhỏ (particles)
+        let heartParticleMaterial;
+        function createHeartParticles() {
+            const points = createHeartPoints(420, 1.7);
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+            // Tạo vật liệu particles lung linh
+            const material = new THREE.PointsMaterial({
+                color: 0xff5e99,
+                size: 0.22,
+                transparent: true,
+                opacity: 0.92,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending
             });
-            html += '</div>';
-            document.querySelector('.answer').innerHTML = html;
-            document.getElementById('quiz-result').textContent = '';
+            heartParticleMaterial = material;
+            const particles = new THREE.Points(geometry, material);
+            particles.position.set(0, 0, 0);
+            return particles;
         }
 
-        function checkQuiz(selectedIdx) {
-            const q = quizData[quizIndex];
-            if (selectedIdx === q.answer) {
-                document.getElementById('quiz-result').textContent = "🎉 Chính xác! Bạn thật tuyệt!";
-                launchConfetti();
-                setTimeout(() => {
-                    showQuiz();
-                }, 1800);
-            } else {
-                document.getElementById('quiz-result').textContent = "❌ Chưa đúng, thử lại nhé!";
-            }
+        // Tạo trái tim 3D lung linh
+        const heart = createHeartParticles();
+        scene.add(heart);
+
+        // Các trái tim nhỏ bay quanh
+        function createSmallHeart(x, y, z, color) {
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 0.2);
+            shape.bezierCurveTo(0, 0.2, -0.2, 0.2, -0.2, 0);
+            shape.bezierCurveTo(-0.2, -0.2, 0, -0.2, 0, -0.05);
+            shape.bezierCurveTo(0, -0.2, 0.2, -0.2, 0.2, 0);
+            shape.bezierCurveTo(0.2, 0.2, 0, 0.2, 0, 0.2);
+            const geometry = new THREE.ExtrudeGeometry(shape, { depth: 0.09, bevelEnabled: false });
+            const material = new THREE.MeshPhongMaterial({ color: color, shininess: 120, transparent: true, opacity: 0.85 });
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.position.set(x, y, z);
+            return mesh;
+        }
+        const smallHearts = [];
+        for (let i = 0; i < 22; i++) {
+            const angle = (i / 22) * Math.PI * 2;
+            const radius = 2.7 + Math.random() * 1.1;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius * 0.7 + (Math.random()-0.5)*0.7;
+            const z = (Math.random()-0.5)*2.5;
+            const color = new THREE.Color(`hsl(${Math.floor(Math.random()*360)},90%,75%)`);
+            const mesh = createSmallHeart(x, y, z, color);
+            scene.add(mesh);
+            smallHearts.push({mesh, angle, radius, y0: y, speed: 0.009 + Math.random()*0.009});
         }
 
-        // Confetti effect
-        function launchConfetti() {
-            const canvas = document.getElementById('confetti-canvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            canvas.style.display = 'block';
-            const ctx = canvas.getContext('2d');
-            let confetti = [];
-            for (let i = 0; i < 120; i++) {
-                confetti.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * -canvas.height,
-                    r: Math.random() * 6 + 4,
-                    d: Math.random() * 80 + 40,
-                    color: `hsl(${Math.random()*360},90%,60%)`,
-                    tilt: Math.random() * 10 - 10
-                });
+        // Animation lung linh
+        function animate() {
+            requestAnimationFrame(animate);
+            heart.rotation.y += 0.013;
+            heart.rotation.x = Math.sin(Date.now()/1400)*0.13;
+            heart.rotation.z = Math.cos(Date.now()/2000)*0.07;
+            // Đổi màu trái tim phân tử theo thời gian
+            if (heartParticleMaterial) {
+                const t = Date.now() * 0.001;
+                heartParticleMaterial.color = new THREE.Color(`hsl(${(t*60)%360}, 90%, 70%)`);
             }
-            let angle = 0;
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                angle += 0.01;
-                for (let i = 0; i < confetti.length; i++) {
-                    let c = confetti[i];
-                    c.y += (Math.cos(angle + c.d) + 3 + c.r/2) * 0.7;
-                    c.x += Math.sin(angle) * 2;
-                    ctx.beginPath();
-                    ctx.arc(c.x, c.y, c.r, 0, Math.PI*2, false);
-                    ctx.fillStyle = c.color;
-                    ctx.fill();
-                    if (c.y > canvas.height) {
-                        confetti[i] = {
-                            x: Math.random() * canvas.width,
-                            y: -10,
-                            r: c.r,
-                            d: c.d,
-                            color: c.color,
-                            tilt: c.tilt
-                        };
-                    }
+            // Bay quanh cho các trái tim nhỏ
+            smallHearts.forEach(obj => {
+                obj.angle += obj.speed;
+                obj.mesh.position.x = Math.cos(obj.angle) * obj.radius;
+                obj.mesh.position.y = Math.sin(obj.angle) * obj.radius * 0.7 + obj.y0*0.1;
+                obj.mesh.position.z = Math.sin(obj.angle*1.5) * 1.5;
+                obj.mesh.rotation.y += 0.04;
+                obj.mesh.rotation.x += 0.02;
+            });
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth/window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+    <script>
+        // Sao chổi nhiều màu lung linh
+        const cometCanvas = document.getElementById('comet-canvas');
+        const cometCtx = cometCanvas.getContext('2d');
+        function resizeCometCanvas() {
+            cometCanvas.width = window.innerWidth;
+            cometCanvas.height = window.innerHeight;
+        }
+        resizeCometCanvas();
+        window.addEventListener('resize', () => {
+            resizeCometCanvas();
+            initComets();
+        });
+
+        // Thông số cho nhiều sao chổi
+        const cometCount = 3;
+        let comets = [];
+        function resetComet() {
+            return {
+                x: -100 - Math.random()*200,
+                y: 80 + Math.random() * (window.innerHeight - 160),
+                vx: 5 + Math.random()*3,
+                vy: 0.8 + Math.random()*2,
+                len: 100 + Math.random()*60,
+                color: `hsl(${Math.floor(Math.random()*360)},100%,85%)`,
+                alpha: 1,
+                size: 10 + Math.random()*8,
+                tail: 18 + Math.floor(Math.random()*8),
+                glow: 24 + Math.random()*16
+            };
+        }
+        function initComets() {
+            comets = [];
+            for(let i=0;i<cometCount;i++) comets.push(resetComet());
+        }
+        initComets();
+
+        // Vẽ nhiều sao chổi lung linh
+        function drawComets() {
+            cometCtx.clearRect(0,0,cometCanvas.width,cometCanvas.height);
+            comets.forEach(comet => {
+                // Đuôi sao chổi nhiều màu
+                for(let i=0;i<comet.tail;i++) {
+                    let t = i/comet.tail;
+                    cometCtx.beginPath();
+                    cometCtx.arc(comet.x - comet.vx*i*5, comet.y - comet.vy*i*5, comet.size-t*comet.size*0.8, 0, Math.PI*2);
+                    cometCtx.fillStyle = `rgba(255,255,255,${(1-t)*0.18})`;
+                    cometCtx.shadowColor = comet.color;
+                    cometCtx.shadowBlur = comet.glow*(1-t);
+                    cometCtx.fill();
                 }
-                requestAnimationFrame(draw);
-            }
-            draw();
-            setTimeout(() => { canvas.style.display = 'none'; }, 1800);
+                // Đầu sao chổi màu pastel
+                cometCtx.beginPath();
+                cometCtx.arc(comet.x, comet.y, comet.size+3, 0, Math.PI*2);
+                cometCtx.fillStyle = comet.color.replace('85%', '95%');
+                cometCtx.shadowColor = comet.color;
+                cometCtx.shadowBlur = comet.glow+10;
+                cometCtx.globalAlpha = 0.85;
+                cometCtx.fill();
+                cometCtx.shadowBlur = 0;
+                cometCtx.globalAlpha = 1;
+            });
         }
+        function animateComets() {
+            comets.forEach(comet => {
+                comet.x += comet.vx;
+                comet.y += comet.vy;
+                // Khi ra khỏi màn hình thì reset lại
+                if (comet.x - comet.len > window.innerWidth || comet.y - comet.len > window.innerHeight) {
+                    Object.assign(comet, resetComet());
+                }
+            });
+            drawComets();
+            requestAnimationFrame(animateComets);
+        }
+        animateComets();
+    </script>
+    <script>
+    const quoteDiv = document.getElementById('sad-quotes');
+    const music = document.getElementById('bg-music');
+    let currentQuoteIdx = -1;
+
+    function updateTimedQuote() {
+        if (!music.duration || music.paused) return;
+        const currentTime = music.currentTime;
+        let idx = 0;
+        for (let i = 0; i < timedQuotes.length; i++) {
+            if (currentTime >= timedQuotes[i][0]) idx = i;
+            else break;
+        }
+        if (idx !== currentQuoteIdx) {
+            quoteDiv.textContent = timedQuotes[idx][1];
+            currentQuoteIdx = idx;
+        }
+    }
+
+    // Cập nhật chú thích mỗi 500ms khi nhạc phát
+    music.addEventListener('timeupdate', updateTimedQuote);
+    setInterval(updateTimedQuote, 500);
+
+    // Khi tua nhạc hoặc phát lại, cập nhật chú thích ngay
+    music.addEventListener('seeked', updateTimedQuote);
+    music.addEventListener('play', updateTimedQuote);
+
+    // Khi hết nhạc, reset chú thích về câu đầu
+    music.addEventListener('ended', function() {
+        quoteDiv.textContent = timedQuotes[0][1];
+        currentQuoteIdx = 0;
+    });
     </script>
 </body>
 </html>
